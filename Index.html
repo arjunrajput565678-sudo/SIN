@@ -1,0 +1,38 @@
+<!-- कैमरा और गैलरी एक्सेस करने वाला सेक्शन -->
+<div style="text-align: center; padding: 20px; font-family: sans-serif;">
+  <h3>फोटो/स्टोरी अपलोड करें</h3>
+  
+  <!-- गैलरी से फोटो चुनने का बटन -->
+  <input type="file" id="galleryInput" accept="image/*" style="display:none;" onchange="previewImage(event)">
+  <button onclick="document.getElementById('galleryInput').click()" style="padding: 10px 15px; margin: 5px; cursor: pointer;">
+    📁 गैलरी से फोटो चुनें
+  </button>
+
+  <!-- सीधे कैमरे से फोटो खींचने का बटन -->
+  <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none;" onchange="previewImage(event)">
+  <button onclick="document.getElementById('cameraInput').click()" style="padding: 10px 15px; margin: 5px; cursor: pointer;">
+    📷 कैमरे से फोटो लें
+  </button>
+
+  <!-- सेलेक्ट की गई फोटो दिखाने की जगह -->
+  <div style="margin-top: 20px;">
+    <p>प्रीव्यू (Preview):</p>
+    <img id="imagePreview" src="" alt="कोई फोटो सेलेक्ट नहीं की गई" style="max-width: 100%; max-height: 300px; display: none; border-radius: 8px; border: 1px solid #ccc;">
+  </div>
+</div>
+
+<script>
+  // फोटो का प्रीव्यू दिखाने वाला फंक्शन
+  function previewImage(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const imgElement = document.getElementById('imagePreview');
+        imgElement.src = e.target.result;
+        imgElement.style.display = 'inline-block';
+      }
+      reader.readAsDataURL(file);
+    }
+  }
+</script>
