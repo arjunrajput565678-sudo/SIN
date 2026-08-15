@@ -19,6 +19,46 @@
     <p>प्रीव्यू (Preview):</p>
     <img id="imagePreview" src="" alt="कोई फोटो सेलेक्ट नहीं की गई" style="max-width: 100%; max-height: 300px; display: none; border-radius: 8px; border: 1px solid #ccc;">
   </div>
+  <div style="max-width: 400px; margin: 20px auto; border: 1px solid #ccc; border-radius: 10px; padding: 15px; font-family: sans-serif; background-color: #f9f9f9;">
+  <h3 style="text-align: center; margin-top: 0;">ऑफलाइन लाइव चैट बॉक्स</h3>
+  
+  <!-- चैट मैसेज दिखने की जगह -->
+  <div id="chatBox" style="height: 250px; border: 1px solid #ddd; background: #fff; padding: 10px; overflow-y: auto; border-radius: 5px; margin-bottom: 10px;">
+    <p style="color: #888; font-size: 12px; text-align: center;">-- मैसेज टाइप करके भेजें --</p>
+  </div>
+
+  <!-- मैसेज इनपुट और बटन -->
+  <div style="display: flex; gap: 5px;">
+    <input type="text" id="messageInput" placeholder="यहाँ मैसेज लिखें..." style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; outline: none;">
+    <button onclick="sendMessage()" style="padding: 10px 15px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">भेजें</button>
+  </div>
+</div>
+
+<script>
+  function sendMessage() {
+    const input = document.getElementById('messageInput');
+    const message = input.value.trim();
+    
+    if (message !== '') {
+      const chatBox = document.getElementById('chatBox');
+      const msgElement = document.createElement('div');
+      
+      msgElement.style.margin = '5px 0';
+      msgElement.style.padding = '8px 12px';
+      msgElement.style.backgroundColor = '#dcf8c6';
+      msgElement.style.borderRadius = '8px';
+      msgElement.style.maxWidth = '80%';
+      msgElement.style.marginLeft = 'auto';
+      msgElement.style.fontSize = '14px';
+      msgElement.innerText = message;
+      
+      chatBox.appendChild(msgElement);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      input.value = '';
+    }
+  }
+</script>
+
 </div>
 
 <script>
